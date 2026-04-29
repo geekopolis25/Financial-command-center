@@ -1,0 +1,296 @@
+/* ── LAYOUT ── */
+.agentHub {
+  padding: 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.agentTabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.agentTab {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  padding: 7px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.agentTab:hover {
+  color: var(--ink);
+  border-color: var(--amber);
+}
+
+.agentTab.active {
+  background: var(--amber);
+  color: #080604;
+  border-color: var(--amber);
+  font-weight: 600;
+}
+
+/* ── AGENT PAGE ── */
+.agentPage {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.agentHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.agentNum {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  color: var(--muted2);
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.agentTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2.5px;
+  color: var(--ink);
+}
+
+.agentMission {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  margin-left: 4px;
+}
+
+/* ── SPLIT LAYOUT ── */
+.split {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── INPUT PANEL ── */
+.inputCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--amber);
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fieldLabel {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: help;
+}
+
+/* ── RUN BUTTON ── */
+.runBtn {
+  background: var(--amber);
+  color: #080604;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.runBtn:hover {
+  opacity: 0.88;
+}
+
+.runBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.resetBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 3px;
+  padding: 6px 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  width: 100%;
+}
+
+.resetBtn:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* ── OUTPUT PANEL ── */
+.outputWrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--green);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.outputToolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+}
+
+.outputLabel {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.streaming {
+  color: var(--green);
+}
+
+.cursor {
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.outputActions {
+  display: flex;
+  gap: 6px;
+}
+
+.actionBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.actionBtn:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.outputText {
+  padding: 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--ink);
+  white-space: pre-wrap;
+  word-break: break-word;
+  flex: 1;
+  margin: 0;
+}
+
+/* ── EMPTY / ERROR STATES ── */
+.outputEmpty {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.emptyHint {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+  margin: auto;
+  text-align: center;
+}
+
+.savedNotice {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 10px;
+}
+
+.outputError {
+  background: var(--red-dim);
+  border: 1px solid var(--red-mid);
+  border-radius: 4px;
+  padding: 16px;
+  min-height: 120px;
+}
+
+.errorTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+
+.errorMsg {
+  font-size: 11px;
+  color: var(--red);
+  line-height: 1.5;
+}
+
+/* ── SECTION DIVIDER ── */
+.sectionDivider {
+  font-size: 8px;
+  color: var(--muted2);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 0 2px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}

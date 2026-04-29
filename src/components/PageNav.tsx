@@ -6,6 +6,7 @@ const pages: { id: PageId; label: string }[] = [
   { id: 'budget', label: 'Budget' },
   { id: 'forecast', label: 'Forecast' },
   { id: 'settings', label: 'Settings' },
+  { id: 'agents', label: '⚡ Hiring Hub' },
 ]
 
 interface Props {

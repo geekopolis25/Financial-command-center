@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type FC } from 'react'
 import { ThemeProvider } from './context/ThemeContext'
 import { FinanceProvider } from './context/FinanceContext'
 import Tooltip from './components/Tooltip'
@@ -12,9 +12,12 @@ import DebtPage from './pages/DebtPage'
 import BudgetPage from './pages/BudgetPage'
 import ForecastPage from './pages/ForecastPage'
 import SettingsPage from './pages/SettingsPage'
+import AgentHub from './agents/AgentHub'
 import type { PageId } from './types'
 
-const pages: Record<PageId, () => JSX.Element> = {
+const FINANCE_PAGES = new Set<PageId>(['dashboard', 'debt', 'budget', 'forecast', 'settings'])
+
+const pages: Record<Exclude<PageId, 'agents'>, FC> = {
   dashboard: DashboardPage,
   debt: DebtPage,
   budget: BudgetPage,
@@ -24,18 +27,25 @@ const pages: Record<PageId, () => JSX.Element> = {
 
 export default function App() {
   const [activePage, setActivePage] = useState<PageId>('dashboard')
-  const ActivePage = pages[activePage]
+  const isFinancePage = FINANCE_PAGES.has(activePage)
 
   return (
     <ThemeProvider>
       <FinanceProvider>
         <Tooltip />
         <Header />
-        <CrisisBar />
-        <NutBar />
-        <HoldingsBar />
+        {isFinancePage && (
+          <>
+            <CrisisBar />
+            <NutBar />
+            <HoldingsBar />
+          </>
+        )}
         <PageNav active={activePage} onChange={setActivePage} />
-        <ActivePage />
+        {activePage === 'agents'
+          ? <AgentHub />
+          : (() => { const P = pages[activePage as Exclude<PageId, 'agents'>]; return <P /> })()
+        }
       </FinanceProvider>
     </ThemeProvider>
   )

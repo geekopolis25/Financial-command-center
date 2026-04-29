@@ -27,6 +27,6 @@ export interface CardData {
   valueColor?: 'cr' | 'cg' | 'ca' | 'cb'
 }
 
-export type PageId = 'dashboard' | 'debt' | 'budget' | 'forecast' | 'settings'
+export type PageId = 'dashboard' | 'debt' | 'budget' | 'forecast' | 'settings' | 'agents'
 
 export type Theme = 'dark' | 'light'
